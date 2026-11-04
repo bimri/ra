@@ -1,0 +1,19 @@
+{
+  "name": "@ra/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Event schemas, the shared reducer, the live socket protocol and Ra's names.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "packages": {
+    "opus-decoder": {
+      "version": "0.7.12",
+      "integrity": "sha512-6zpHFDi/MhYvMwyYiuJPqJ2lcRkfm7wHblSvT3lUtx/kLvHkunoe/rhTn1dLKxqVGLeQj3gQi7CnR0N2p3RuOg==",
+      "gitHead": "c9ff316db7f21fe95b0e89b308d0720fde6fecd2",
+      "license": "MIT"
+    },
+    "@wasm-audio-decoders/common": {
+      "version": "9.0.7",
+      "integrity": "sha512-WRaUuWSKV7pkttBygml/a6dIEpatq2nnZGFIoPTc5yPLkxL6Wk4YaslPM98OPQvWacvNZ+Py9xROGDtrFBDzag==",
+      "gitHead": "e4f7eef8cda48719a884023582d8efc5b8d76f6c",
+      "license": "MIT"
+    },
+    "simple-yenc": {
+      "version": "1.0.4",
+      "integrity": "sha512-5gvxpSd79e9a3V4QDYUqnqxeD4HGlhCakVpb6gMnDD7lexJggSBJRBO5h52y/iJrdXRilX9UCuDaIJhSWm5OWw==",
+      "gitHead": "3f87552b39abc2791f1e5331cb444a2726abeb86",
+      "license": "MIT"
+    },
+    "@eshaz/web-worker": {
+      "version": "1.2.2",
+      "integrity": "sha512-WxXiHFmD9u/owrzempiDlBB1ZYqiLnm9s6aPc8AlFQalq2tKmqdmMr9GXOupDgzXtqnBipj8Un0gkIm7Sjf8mw==",
+      "gitHead": "8d1e4bbf49f283fe59fdda20f633286148770696",
+      "license": "Apache-2.0"
+    }
+  },
+  "wasm": {
+    "bytes": 93685,
+    "sha256": "8b67eda2a46e478f65c24c467dae9eac26293efae6484bfe762b9d1086058b4b"
+  },
+  "javascript": {
+    "bytes": 87722,
+    "sha256": "7468bb766c962683a6c22d625a011ea356d0fdf7c2c708892b7054e384aeb39a"
+  },
+  "machineLearning": false,
+  "staticModuleRequired": true
+}

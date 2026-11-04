@@ -1,0 +1,27 @@
+{
+  "name": "@ra/worker",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The Worker: routes, your Mind (one Durable Object per person), the Horizon, Workflows, Muse and Ra's voice.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "tsc -p tsconfig.json && wrangler deploy --dry-run --outdir dist",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "deploy": "wrangler deploy --var RA_ENV:production --var RA_MUSE_PROVIDER:muse --var RA_TRANSCRIBER:muse --var RA_MUSE_TALK:spark"
+  },
+  "dependencies": {
+    "@noble/ciphers": "^2.4.0",
+    "@ra/core": "workspace:*",
+    "@ra/prompts": "workspace:*",
+    "@simplewebauthn/server": "^13.3.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261023.1",
+    "@ra/web": "workspace:*",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.40.0"
+  }
+}

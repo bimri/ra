@@ -1,0 +1,69 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ra",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-20",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // The web build, served by this Worker. The Worker runs first so it can
+  // take /ray socket upgrades and API routes; everything else is ASSETS.
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  },
+
+  "vars": {
+    "RA_ENV": "dev",
+    // Ra runs on Muse (Spark, Wonder, Transcribe) and speaks with ElevenLabs. Locally,
+    // .dev.vars supplies MUSE_KEY; RA_MUSE_PROVIDER/RA_TRANSCRIBER "fake" run without keys.
+    // Which premade ElevenLabs voice is Ra's when RA_ELEVENLABS_VOICE is empty.
+    "RA_VOICE_GENDER": "male",
+    // Ra's ElevenLabs voice. Osiris (library voice Mm2mHUWQf6Vl4gbaE2gQ) answers 404
+    // until it's added to the account's My Voices; empty uses premade Sarah.
+    "RA_ELEVENLABS_VOICE": "",
+    // The language you speak in a Ray, or "auto" to let Muse Transcribe follow your switches.
+    "RA_LANGUAGE": "en"
+  },
+
+  // Workers AI always runs on Cloudflare, even under `wrangler dev` (needs `wrangler login`).
+  "ai": { "binding": "AI", "remote": true },
+
+  // One Mind per person; one Horizon per field. Both SQLite-backed.
+  "durable_objects": {
+    "bindings": [
+      { "name": "MIND", "class_name": "MindDO" },
+      { "name": "HORIZON", "class_name": "HorizonDO" }
+    ]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["MindDO", "HorizonDO"] }],
+
+  // Accounts, beacons, crews. The ledger is its own database with no route to any Mind.
+  "d1_databases": [
+    { "binding": "DB", "database_name": "ra", "database_id": "78ff3f22-7488-418c-a554-6abcdff94960", "migrations_dir": "migrations/db" },
+    { "binding": "LEDGER", "database_name": "ra-ledger", "database_id": "e867b265-809b-4c26-aa7f-7fce9dc2e7c3", "migrations_dir": "migrations/ledger" }
+  ],
+
+  // Voice clips, evidence, exports, landfall snapshots.
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "ra-files" }],
+
+  "workflows": [
+    { "name": "ra-trip-design", "binding": "TRIP_DESIGN", "class_name": "TripDesign" },
+    { "name": "ra-horizon-refresh", "binding": "HORIZON_REFRESH", "class_name": "HorizonRefresh" },
+    { "name": "ra-night-watch", "binding": "NIGHT_WATCH", "class_name": "NightWatch" },
+    { "name": "ra-weekly-reading", "binding": "WEEKLY_READING", "class_name": "WeeklyReading" },
+    { "name": "ra-season-review", "binding": "SEASON_REVIEW", "class_name": "SeasonReview" },
+    { "name": "ra-beacon-match", "binding": "BEACON_MATCH", "class_name": "BeaconMatch" }
+  ],
+
+  // Keys live in Cloudflare Secrets Store, never in code or the repo.
+  // The Worker falls back to stubs while a secret can't be read. Cloudflare
+  // refuses to deploy a binding to a secret that doesn't exist.
+  "secrets_store_secrets": [
+    { "binding": "MUSE_KEY", "store_id": "7da31ada53674ef6ac2cf1aa0261d8e4", "secret_name": "ramusings" },
+    { "binding": "ELEVENLABS_KEY", "store_id": "7da31ada53674ef6ac2cf1aa0261d8e4", "secret_name": "elevenlabs-api-key" }
+  ],
+
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paper ground (App UI v2's default) so the shell never flashes before the screens load. -->
+    <style name="Theme.Ra" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/paper_ground</item>
+        <item name="android:statusBarColor">@color/paper_ground</item>
+        <item name="android:navigationBarColor">@color/paper_ground</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+    <color name="paper_ground">#ECEBE7</color>
+</resources>

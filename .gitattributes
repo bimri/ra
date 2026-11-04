@@ -1,0 +1,6 @@
+# One line ending in the repo, whatever the machine. gradlew must stay LF to run on Mac, Linux and CI.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.jar binary
+*.png binary
+*.wav binary

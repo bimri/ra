@@ -1,0 +1,51 @@
+{
+  "about": "Seeded Horizons for the demo fields, as drawn on the Ra · App UI v2 canvas (E2, E3, B6). HorizonRefresh (Wonder with web search) replaces a field's signals with ones it has read; until then, signals whose canvas copy names no source carry the canvas itself as their source, so nothing on screen looks more checked than it is.",
+  "fields": [
+    {
+      "id": "energy-ai",
+      "name": "Energy systems run through AI agents",
+      "about": "Power, inverters, home solar and batteries, grid-edge software and firmware, repair of energy hardware",
+      "signals": [
+        {
+          "id": "energy-ai/risen-entry-code",
+          "kind": "risen",
+          "text": "Agents write most entry-level code.",
+          "sources": ["Ra design canvas (seed, not yet read by Wonder)"]
+        },
+        {
+          "id": "energy-ai/rising-home-solar",
+          "kind": "rising",
+          "text": "Home solar is spreading faster than the people who can repair it.",
+          "staysHuman": "Owning the fault when the lights go out.",
+          "direction": "High confidence. More homes depend on inverters every year.",
+          "timing": "Uncertain where you live.",
+          "sources": ["Energy agency report · Oct 2026", "Repair trade survey", "Open firmware project activity"]
+        },
+        {
+          "id": "energy-ai/early-grid-edge",
+          "kind": "early",
+          "text": "Grid-edge software needs field engineers.",
+          "sources": ["Ra design canvas (seed, not yet read by Wonder)"]
+        },
+        {
+          "id": "energy-ai/stays-human",
+          "kind": "stays-human",
+          "text": "Choosing which fault matters, and owning it when the lights go out.",
+          "sources": ["Ra design canvas (seed, not yet read by Wonder)"]
+        },
+        {
+          "id": "energy-ai/on-ramp",
+          "kind": "on-ramp",
+          "text": "Cheap hardware, open firmware, free simulators.",
+          "sources": ["Ra design canvas (seed, not yet read by Wonder)"]
+        }
+      ]
+    },
+    {
+      "id": "maths-physics",
+      "name": "Maths into physics",
+      "about": "Mathematics, physics, modelling, research and the problems that connect them",
+      "signals": []
+    }
+  ]
+}

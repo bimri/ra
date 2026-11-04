@@ -1,0 +1,28 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+*.log
+.DS_Store
+.pnpm-store/
+.claude/
+
+# Android
+apps/android/.gradle/
+apps/android/build/
+apps/android/app/build/
+apps/android/app/.cxx/
+apps/android/local.properties
+apps/android/app/src/main/assets/web/
+apps/android/.idea/
+*.iml
+*.apk
+
+# Large media and models are never committed
+*.mp4
+*.webm
+*.gguf
+*.onnx

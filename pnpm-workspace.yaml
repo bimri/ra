@@ -1,0 +1,10 @@
+packages:
+  - apps/web
+  - apps/worker
+  - packages/*
+
+# Packages allowed to run install scripts.
+allowBuilds:
+  esbuild: true
+  workerd: true
+  sharp: true

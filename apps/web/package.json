@@ -1,0 +1,27 @@
+{
+  "name": "@ra/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Ra's screens (Vite, Preact, three.js), served by the Worker and hosted in the Android shell.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json && vite build",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ra/core": "workspace:*",
+    "preact": "^10.27.2",
+    "three": "0.149.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.2",
+    "@types/three": "0.149.0",
+    "fake-indexeddb": "^6.2.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "vitest": "^3.2.4"
+  }
+}

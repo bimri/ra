@@ -1,0 +1,78 @@
+/* The app frame around the v2 boards: each screen is one .ui sheet filling the
+   screen. The boards are drawn at 390px; main.tsx scales #app by --z to fit
+   (smaller on narrow phones, larger on tablets), so heights divide by it. */
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+}
+#app {
+  height: 100%;
+}
+#app {
+  zoom: var(--z, 1);
+}
+.ui {
+  width: 100%;
+  max-width: 640px;
+  height: calc(100dvh / var(--z, 1));
+  margin: 0 auto;
+}
+.ui button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.ui .rec:disabled {
+  opacity: 0.5;
+}
+/* Pills, keys and segments used as buttons keep the board's look, not the browser's. */
+button.pill {
+  background: none;
+  border: none;
+  font: 500 12.5px/1 "Inter Tight", sans-serif;
+  color: var(--text);
+  cursor: pointer;
+}
+button.pill.on {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+/* Screens without the Dock carry the Next bar: their content scrolls clear of it. */
+.ui:has(~ .nextbar) .pg {
+  padding-bottom: 104px !important;
+}
+/* The system bars. The Android shell draws edge to edge and passes their heights as --sat/--sab;
+   browsers that know the safe area use env(). Content starts below the status bar, and a strip in
+   the page colour sits over it, so scrolled content never runs under the clock. */
+:root {
+  --safe-top: var(--sat, env(safe-area-inset-top, 0px));
+  --safe-bottom: var(--sab, env(safe-area-inset-bottom, 0px));
+}
+.ui .pg {
+  padding-top: calc(22px + var(--safe-top) / var(--z, 1)) !important;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Solid over the bar, then a short fade, so scrolled text dissolves instead of being cut off under it. */
+  height: calc(var(--safe-top) + 14px);
+  background: linear-gradient(var(--bg) calc(100% - 14px), color-mix(in srgb, var(--bg) 0%, transparent));
+  z-index: 45;
+  pointer-events: none;
+}
+.ui .tabbar {
+  height: calc(84px + var(--safe-bottom) / var(--z, 1));
+  padding-bottom: calc(22px + var(--safe-bottom) / var(--z, 1));
+}
+/* Cards that are buttons (a trip to pick, a quote to keep) look like cards, not the browser's buttons. */
+.ui button.card {
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
